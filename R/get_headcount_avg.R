@@ -18,7 +18,7 @@
 #'   get_headcount_avg("2022-01-01")
 get_headcount_avg <- function(.data, d1, month_offset = 3){
   d1 <- as.Date(d1)
-  d2 <- max(d1, d1 + lubridate::months.numeric(month_offset) - 1)
+  d2 <- max(d1, d1 + lubridate:::months.numeric(month_offset) - 1)
   .data %>% 
     get_headcount(d1) %>% 
     dplyr::rename(headcount_date_1 = headcount) -> s1
@@ -28,19 +28,19 @@ get_headcount_avg <- function(.data, d1, month_offset = 3){
     dplyr::rename(headcount_date_2 = headcount) -> s2
   
   if(length(s1) == 1){
-    tibble(s1, s2) %>% 
+    tibble::tibble(s1, s2) %>% 
       dplyr::rowwise() %>% 
-      dplyr::mutate(average = num(mean(c(headcount_date_1, headcount_date_2), na.rm=TRUE), 
+      dplyr::mutate(average = tibble::num(mean(c(headcount_date_1, headcount_date_2), na.rm=TRUE), 
                            digits=3)) %>% # added 3 digit option
-      ungroup()
+      dplyr::ungroup()
   } else {
     suppressMessages(
       s1 %>% 
         dplyr::left_join(s2) %>% 
         dplyr::rowwise() %>% 
-        dplyr::mutate(average = num(mean(c(headcount_date_1, headcount_date_2), na.rm=TRUE), 
+        dplyr::mutate(average = tibble::num(mean(c(headcount_date_1, headcount_date_2), na.rm=TRUE), 
                              digits=3)) %>% # added 3 digit option
-        ungroup()
+        dplyr::ungroup()
     )
   }
 }
