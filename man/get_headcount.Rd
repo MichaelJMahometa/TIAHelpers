@@ -24,6 +24,6 @@ wfm_tms_play \%>\%
   
 # Using the group_by() dplyr function.  
 wfm_tms_play \%>\% 
-  group_by(region) \%>\% 
+  dplyr::group_by(region) \%>\% 
   get_headcount("2022-01-01")
 }

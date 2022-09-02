@@ -2,4 +2,5 @@
 
 export("%>%")
 export(get_headcount)
+export(get_headcount_avg)
 importFrom(magrittr,"%>%")
