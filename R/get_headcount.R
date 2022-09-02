@@ -3,11 +3,18 @@
 #' @param .data Existing data. Not required if piping (`%>%`) using the tidyverse workflow. 
 #' @param date_val Date for the time that headcount should be calculated. Date should be in ymd format. It is recommended that all date field are correctly declared using lubridate::ymd().
 #'
-#' @return A numeric vector.
+#' @return A single numeric value in a 1x1 tibble matrix or a tibble matrix that takes into account any `group_by()` actions.
 #' @export
 #'
 #' @examples
-#' 
+#' # Standard usage.
+#' wfm_tms_play %>% 
+#'   get_headcount("2022-01-01")
+#'   
+#' # Using the group_by() dplyr function.  
+#' wfm_tms_play %>% 
+#'   group_by(region) %>% 
+#'   get_headcount("2022-01-01")
 get_headcount <- function(.data, date_val){
   date_val <- as.Date(date_val)
   .data %>% 

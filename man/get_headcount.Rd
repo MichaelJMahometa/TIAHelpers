@@ -12,8 +12,18 @@ get_headcount(.data, date_val)
 \item{date_val}{Date for the time that headcount should be calculated. Date should be in ymd format. It is recommended that all date field are correctly declared using lubridate::ymd().}
 }
 \value{
-A numeric vector.
+A single numeric value in a 1x1 tibble matrix or a tibble matrix that takes into account any \code{group_by()} actions.
 }
 \description{
 Get Headcount
+}
+\examples{
+# Standard usage.
+wfm_tms_play \%>\% 
+  get_headcount("2022-01-01")
+  
+# Using the group_by() dplyr function.  
+wfm_tms_play \%>\% 
+  group_by(region) \%>\% 
+  get_headcount("2022-01-01")
 }
