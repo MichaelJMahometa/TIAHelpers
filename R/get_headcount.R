@@ -18,9 +18,9 @@
 get_headcount <- function(.data, date_val){
   date_val <- as.Date(date_val)
   .data %>% 
-    mutate(status = case_when(hire_date <= {{ date_val }} ~ 1,
+    dplyr::mutate(status = dplyr::case_when(hire_date <= {{ date_val }} ~ 1,
                               TRUE ~ NA_real_),
-           status = case_when(termination_date > {{ date_val }} | 
+           status = dplyr::case_when(termination_date > {{ date_val }} | 
                                 is.na(termination_date) ~ status,
                               termination_date < {{ date_val }} ~ 0)) %>% 
     # group_by(status, .add=TRUE) %>%
@@ -28,7 +28,7 @@ get_headcount <- function(.data, date_val){
     # filter(status == "active") %>% 
     # ungroup() %>% 
     # select(- status)
-    summarize(headcount = sum(status, na.rm=TRUE))
+    dplyr::summarize(headcount = sum(status, na.rm=TRUE))
   
   # "0" = Terminated PRIOR to the supplied date.
   # "1" = Active as of the supplied date.
