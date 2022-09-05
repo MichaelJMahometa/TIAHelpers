@@ -6,14 +6,14 @@
 #' \describe{
 #'   \item{tm_name}{Fictitious employee ID.}
 #'   \item{region}{Fictitious region of employment.}
-#'   \item{team}{Fictitious region of employment.}
-#'   \item{hire_date}{Fictitious region of employment.}
-#'   \item{termination_date}{Fictitious region of employment.}
-#'   \item{termination_category}{Fictitious region of employment.}
-#'   \item{termination_reason}{Fictitious region of employment.}
-#'   \item{tenure}{Fictitious region of employment.}
-#'   \item{gender}{Fictitious region of employment.}
-#'   \item{is_employee_active}{Fictitious region of employment.}
-#'   \item{most_recent_job_satisfaction_score}{Fictitious region of employment.}
+#'   \item{team}{Fictitious team assignment.}
+#'   \item{hire_date}{Fictitious hire date in "YYYY-MM-DD" format (lubridate::ymd).}
+#'   \item{termination_date}{Fictitious termination date.}
+#'   \item{termination_category}{Fictitious termination category. Two categorical entries.}
+#'   \item{termination_reason}{Fictitious Termination reason. Categorical.}
+#'   \item{tenure}{Fictitious amount of time TM is employed.}
+#'   \item{gender}{Fictitious gender of TM. Two cateogircal entries.}
+#'   \item{is_employee_active}{Fictitious TM active status. Categorical.}
+#'   \item{most_recent_job_satisfaction_score}{Fictitious Likert job satisfaction score.}
 #' }
 "wfm_tms_play"
