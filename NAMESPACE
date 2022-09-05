@@ -3,4 +3,6 @@
 export("%>%")
 export(get_headcount)
 export(get_headcount_avg)
+export(get_terms)
+export(get_turnover)
 importFrom(magrittr,"%>%")

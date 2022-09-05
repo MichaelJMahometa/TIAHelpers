@@ -10,12 +10,17 @@
 #' @examples
 #' # Standard usage.
 #' wfm_tms_play %>% 
-#'   get_headcount_avg("2022-01-01")
+#'   get_headcount_avg("2019-01-01")
 #'   
 #' # Using the group_by() dplyr function.  
 #' wfm_tms_play %>% 
 #'   dplyr::group_by(region) %>% 
-#'   get_headcount_avg("2022-01-01")
+#'   get_headcount_avg("2019-01-01")
+#'   
+#' # Same, but for the month of Jan.  
+#' wfm_tms_play %>% 
+#'   dplyr::group_by(region) %>% 
+#'   get_headcount_avg("2019-01-01", month_offset = 1)
 get_headcount_avg <- function(.data, d1, month_offset = 3){
   d1 <- as.Date(d1)
   d2 <- max(d1, d1 + lubridate:::months.numeric(month_offset) - 1)
