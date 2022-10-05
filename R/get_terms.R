@@ -24,7 +24,7 @@
 get_terms <- function(.data, d1, month_offset = 3, term_cat = "Voluntary"){
   # NOTE: This counts the folks termed between OR INCLUDING 2 dates
   d1 <- as.Date(d1)
-  d2 <- max(d1, d1 + lubridate:::months.numeric(months(month_offset)) - 1)
+  d2 <- max(d1, d1 + lubridate:::months.numeric(month_offset) - 1)
   .data %>% 
     dplyr::mutate(termed = dplyr::case_when(((termination_date >= d1) & (termination_date <= d2)) &
                                 grepl(paste(term_cat, collapse = "|"), termination_category) ~ 1)) %>% 
