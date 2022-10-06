@@ -3,9 +3,9 @@
 #' @param .data Existing data. Not required if piping (`%>%`) using the tidyverse workflow.
 #' @param d1 Date for the time that headcount should be calculated. Date should be in ymd format. It is recommended that all date field are correctly declared using lubridate::ymd().
 #' @param month_offset Number of *months* to offset the original date. This is set to 3 months by default (the span of 1 quarter.)
-#' @param term_cat Category of terminations. Defaults to "Voluntary". 
+#' @param term_cat Category of terminations. Defaults to NULL, and will return all terms regardless of type. To choose a specific term category, provide a vector of unique words within the categories required (selection uses `grepl()`). 
 #'
-#' @return A tibble with all infomation that makes up turnover rate for the time period requested.
+#' @return A tibble with all information that makes up turnover rate for the time period requested.
 #' @export
 #'
 #' @examples
@@ -13,15 +13,18 @@
 #' wfm_tms_play %>% 
 #'   get_turnover("2019-01-01")
 #'   
-#' # Standard usage -- both types of term category.
+#' # Standard usage -- "voluntary" terms only.
 #' wfm_tms_play %>% 
-#'   get_turnover("2019-01-01", term_cat = c("Voluntary", "Involuntary"))
+#'   count(termination_category)
+#'   
+#' wfm_tms_play %>% 
+#'   get_turnover("2019-01-01", term_cat = c("Voluntary"))
 #'   
 #' # Using the group_by() dplyr function.  
 #' wfm_tms_play %>% 
 #'   dplyr::group_by(region) %>% 
 #'   get_turnover("2019-01-01")
-get_turnover <- function(.data, d1, month_offset = 3, term_cat = "Voluntary"){
+get_turnover <- function(.data, d1, month_offset = 3, term_cat = NULL){
   d1 <- as.Date(d1)
   .data %>% 
     get_headcount_avg(d1, month_offset = month_offset) -> t1

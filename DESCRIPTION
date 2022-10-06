@@ -1,6 +1,6 @@
 Package: TIAHelpers
 Title: Helper Functions for TMS TIA
-Version: 0.0.1.0
+Version: 0.0.1.1
 Authors@R: 
     person("Michael", "Mahometa", , "michaeljmahometa@gmail.com", role = c("aut", "cre"))
 Description: These functions are designed to be used in the calculation of headcount, terms, tunrover, etc., with the ability to accept tidyverse piping. Also included are helper fucntions for regression models.

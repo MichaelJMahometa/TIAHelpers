@@ -13,7 +13,7 @@ get_terms(.data, d1, month_offset = 3, term_cat = "Voluntary")
 
 \item{month_offset}{Number of \emph{months} to offset the original date. This is set to 3 months by default (the span of 1 quarter.)}
 
-\item{term_cat}{Category of terminations. Defaults to "Voluntary".}
+\item{term_cat}{Category of terminations. Defaults to NULL, and will return all terms regardless of type. To choose a specific term category, provide a vector of unique words within the categories required (selection uses \code{grepl()}).}
 }
 \value{
 A tibble with number of termed within the time frame.
@@ -26,9 +26,12 @@ Get Terms
 wfm_tms_play \%>\% 
   get_terms("2019-01-01")
   
-# Standard usage -- both types of term category.
+# Standard usage -- "voluntary" terms only.
 wfm_tms_play \%>\% 
-  get_terms("2019-01-01", term_cat = c("Voluntary", "Involuntary"))
+  count(termination_category)
+  
+wfm_tms_play \%>\% 
+  get_terms("2019-01-01", term_cat = c("Voluntary"))
   
 # Using the group_by() dplyr function.  
 wfm_tms_play \%>\% 
